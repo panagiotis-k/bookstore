@@ -1,0 +1,12 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Redirect URLs with a trailing slash to the canonical URL without trailing slashes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [R=301,L]
+
+# Handle 'books' and 'books/{:id}' with 'index.php'
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^books(/([0-9]+))?$ index.php [QSA,L]
